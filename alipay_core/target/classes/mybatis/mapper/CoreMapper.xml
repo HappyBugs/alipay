@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.likuncheng.core.mapper.CoreMapper">
+
+	<insert id="createPayLog"
+		parameterType="com.likuncheng.core.entity.PayBean"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into
+		`pay`(outTradeNo,totalAmount,`subject`,body,`tradeNo`,`createTime`)
+		VALUES(#{outTradeNo},#{totalAmount},#{subject},#{body},#{tradeNo},#{createTime})
+	</insert>
+
+	<update id="updPayLogByOutTradeNo"
+		parameterType="java.lang.String">
+		update `pay` set tradeNo = #{tradeNo} , createTime =
+		#{createTime}
+		where outTradeNo = #{outTradeNo}
+	</update>
+	
+	<select id="getMoneyByOutTradeNo"
+		parameterType="java.lang.String" resultType="java.lang.String">
+		select totalAmount from pay WHERE outTradeNo = #{outTradeNo}
+	</select>
+
+</mapper>

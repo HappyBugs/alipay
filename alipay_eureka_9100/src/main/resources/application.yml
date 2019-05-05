@@ -1,0 +1,18 @@
+server:
+  port: 9100
+spring:
+  application: 
+    name: com.likuncheng.eureka
+eureka: 
+  instance:
+    hostname: 127.0.0.1
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:9100/eureka/
+  server:
+    ##测试环境关闭自我保护机制  保证不可能服务可以及时被剔除 在生产环境中不建议使用
+    enable-self-preservation: false
+    ##自我保护机制间隔时间为2秒
+    eviction-interval-timer-in-ms: 20000
